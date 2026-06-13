@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@layer theme {
+  :root {
+    --background: #fdfdfd;
+    --foreground: #1a1a1a;
+    
+    --copilot-violet: #8a2be2;
+    --copilot-blue: #0078d4;
+    --copilot-cyan: #00bcf2;
+    --copilot-magenta: #e3008c;
+    --copilot-teal: #008272;
+
+    --surface: rgba(255, 255, 255, 0.7);
+    --surface-border: rgba(255, 255, 255, 0.5);
+    
+    --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    --shadow-float: 0 10px 40px -4px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark {
+    --background: #0f0f0f;
+    --foreground: #f3f3f3;
+    
+    --surface: rgba(30, 30, 30, 0.6);
+    --surface-border: rgba(255, 255, 255, 0.1);
+
+    --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+    --shadow-float: 0 10px 40px -4px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  --color-copilot-violet: var(--copilot-violet);
+  --color-copilot-blue: var(--copilot-blue);
+  --color-copilot-cyan: var(--copilot-cyan);
+  --color-copilot-magenta: var(--copilot-magenta);
+  --color-copilot-teal: var(--copilot-teal);
+
+  --color-surface: var(--surface);
+  --color-surface-border: var(--surface-border);
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-float: var(--shadow-float);
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--surface-border);
+}
+
+/* Copilot mesh gradient animation */
+@keyframes mesh-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.mesh-bg {
+  background: radial-gradient(circle at top left, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at top right, rgba(0, 188, 242, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at bottom left, rgba(227, 0, 140, 0.1) 0%, transparent 40%),
+              radial-gradient(circle at bottom right, rgba(0, 120, 212, 0.15) 0%, transparent 40%);
+  background-size: 200% 200%;
+  animation: mesh-gradient 15s ease infinite;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--copilot-blue), var(--copilot-cyan), var(--copilot-violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
